@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Create User</h3>
+                    <div class="card-body">
+                        <form class="form" #createUserForm="ngForm" 
+                            (ngSubmit)="createUserForm.form.valid && createUser()" novalidate>
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" class="form-control" [(ngModel)]="user.name" name="name"
+                                    #name="ngModel" required>
+                                <span class="text-danger"
+                                    *ngIf="(name.touched || createUserForm.submitted) && name.errors?.required">
+                                    Name is required
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" class="form-control" [(ngModel)]="user.emailId" name="email"
+                                    #email="ngModel" required email>
+                                <span class="text-danger"
+                                    *ngIf="(email.touched || createUserForm.submitted) && email.errors?.required">
+                                    Email is required
+                                </span>
+                                <span class="text-danger" *ngIf="email.touched && email.errors?.email">
+                                    Enter a valid email address
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label>Age</label>
+                                <input type="number" class="form-control" [(ngModel)]="user.age" name="age"
+                                    #age="ngModel">
+                            </div>
+                            <div class="form-group">
+                                <label>Sex</label>
+                                <select [(ngModel)]="user.sex" name="sex">
+                                    <option value="Male">Male</option>
+                                    <option value="Femal">Female</option>
+                                    <option value="Other">Others</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
